@@ -22,7 +22,7 @@ public class User {
         this.role = role;
     }
 	
-	// Getters TO GET
+	// Getters 
     public String getUserID() {
         return userID;
     }
