@@ -22,7 +22,7 @@ public class User {
         this.role = role;
     }
 	
-	// Getters
+	// Getters TO RETRIEVE
     public String getUserID() {
         return userID;
     }
@@ -55,7 +55,7 @@ public class User {
         return role;
     }
 
-    // Setters
+    // Setters TO SET
     public void setUserID(String userID) {
         this.userID = userID;
     }
