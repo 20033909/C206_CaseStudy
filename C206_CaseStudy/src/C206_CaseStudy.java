@@ -50,7 +50,7 @@ public class C206_CaseStudy {
     // Additional code for demonstrating functionalities
     private static void demonstrateFunctionalities() {
         // Create instances of Parent and Vendor objects
-        Parent parent1 = new Parent("P001", "parent1", "password123", "parent1@example.com", "Parent One", "98765432", "123 Parent Street", "Parent");
+        Parent parent1 = new Parent("P001", "parent1", "password123", "parent1@example.com", "Parent One", "98765432", "123 Parent Street", "Parent",new ArrayList<>(), new ArrayList<>(), "");
         Vendor vendor1 = new Vendor("V001", "vendor1", "password456", "vendor1@example.com", "Vendor One", "87654321", "456 Vendor Road", "Vendor");
 
         // Set additional attributes for Parent and Vendor objects
@@ -67,7 +67,7 @@ public class C206_CaseStudy {
         String dietaryRestrictions = "Vegetarian";
         parent1.setDietaryRestrictions(dietaryRestrictions);
 
-        List<Menu> dailyMenus = new ArrayList<>();
+        ArrayList<Menu> dailyMenus = new ArrayList<>();
         Menu menu1 = new Menu("Menu1", "Delicious menu for Monday", 5.99);
         Menu menu2 = new Menu("Menu2", "Special menu for Tuesday", 6.99);
         dailyMenus.add(menu1);
@@ -85,9 +85,9 @@ public class C206_CaseStudy {
         // Print the vendor's daily menus
         List<Menu> vendorMenus = vendor1.getDailyMenus();
         for (Menu menu : vendorMenus) {
-            System.out.println("Menu Name: " + menu.getName());
+            System.out.println("Menu Name: " + menu.getItemName());
             System.out.println("Description: " + menu.getDescription());
-            System.out.println("Price: " + menu.getPrice());
+            System.out.println("Price: " + menu.getPrices());
         }
     }
 }

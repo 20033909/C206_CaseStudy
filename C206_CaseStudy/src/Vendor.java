@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Vendor extends User {
     // Additional attributes specific to the Vendor class
-    private List<Menu> dailyMenus; // List of menus offered by the vendor for each day
+    private ArrayList<Menu> dailyMenus; // List of menus offered by the vendor for each day
     private String contactInformation; // Contact information of the vendor (e.g., phone number, email)
     // You can add more attributes as needed, such as vendor ID, business address, etc.
 
@@ -20,13 +23,20 @@ public class Vendor extends User {
         dailyMenus.remove(menu);
     }
 
-    public List<Menu> getDailyMenus() {
+    public ArrayList<Menu> getDailyMenus() {
         return dailyMenus;
     }
 
     public void setContactInformation(String contactInformation) {
         this.contactInformation = contactInformation;
     }
+
+	
+
+	public void setDailyMenus(ArrayList<Menu> dailyMenus2) {
+		// TODO Auto-generated method stub
+		dailyMenus = new ArrayList<>();
+	}
 
     // Other methods specific to the Vendor class can be added here
 }

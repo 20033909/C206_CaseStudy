@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Parent extends User {
@@ -6,14 +7,26 @@ public class Parent extends User {
     private List<String> allergies; // List of food allergies the parent wants to inform about
 
     // Constructor for Parent class
-    public Parent(String userID, String username, String password, String email, String fullName, String phoneNo, String address, String role, List<Integer> childrenIds, List<String> allergies, String dietaryRestrictions) {
+    public Parent(String userID, String username, String password, String email, String fullName, String phoneNo, String address, String role, List<Integer> childrenIds, ArrayList<String> allergies, String dietaryRestrictions) {
         super(userID, username, password, email, fullName, phoneNo, address, role);
         this.childrenIds = childrenIds;
         this.allergies = allergies;
         this.dietaryRestrictions = dietaryRestrictions;
     }
 
-    // Setter methods for attributes
+    public String getDietaryRestrictions() {
+		return dietaryRestrictions;
+	}
+
+	public List<Integer> getChildrenIds() {
+		return childrenIds;
+	}
+
+	public List<String> getAllergies() {
+		return allergies;
+	}
+
+	// Setter methods for attributes
     public void setChildrenIds(List<Integer> childrenIds) {
         this.childrenIds = childrenIds;
     }
