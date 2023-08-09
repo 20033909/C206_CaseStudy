@@ -1,102 +1,96 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.ArrayList; 
+import java.util.List; 
+import java.util.Scanner; 
+ 
+public class C206_CaseStudy { 
+ 
+    public static void main(String[] args) { 
+        Scanner scanner = new Scanner(System.in); 
+        ArrayList<User> users = new ArrayList<>();  // Create a list to store users 
+ 
+        while (true) { 
+            System.out.println("Welcome to the School Lunch Box Online Ordering System!"); 
+            System.out.println("1. Login"); 
+            System.out.println("2. Register"); 
+            System.out.println("3. Exit"); 
+            int choice = Helper.readInt("Please choose an option:"); 
+ 
+            switch (choice) { 
+                case 1: 
+                    login(users); 
+                    break; 
+                case 2: 
+                    register(users); 
+                    break; 
+                case 3: 
+                    System.out.println("Thank you for using our system. Goodbye!"); 
+                    scanner.close(); 
+                    System.exit(0); 
+                    break; 
+                default: 
+                    System.out.println("Invalid option. Please try again."); 
+            } 
+        } 
+    } 
+ 
+    private static void login(List<User> users) { 
+        String username = Helper.readString("Enter username:"); 
+        String password = Helper.readString("Enter password:"); 
+ 
+        User user = findUserByUsername(users, username); 
+        if (user != null && user.getPassword().equals(password)) { 
+            if (user instanceof Parent) { 
+                System.out.println("Welcome, Parent " + user.getFullName()); 
+                // Call parent menu here 
+            } else if (user instanceof Vendor) { 
+                System.out.println("Welcome, Vendor " + user.getFullName()); 
+                // Call vendor menu here 
+            } 
+        } else { 
+            System.out.println("Invalid username or password. Please try again."); 
+        } 
+    } 
+ 
+    private static void register(List<User> users) { 
+        String username = Helper.readString("Enter a username:"); 
+        String password = Helper.readString("Enter a password:"); 
+        String email = Helper.readString("Enter your email:"); 
+        String fullName = Helper.readString("Enter your full name:"); 
+        String phoneNo = Helper.readString("Enter your phone number:"); 
+        String address = Helper.readString("Enter your address:"); 
+ 
+        System.out.println("Choose a role:"); 
+        System.out.println("1. Parent"); 
+        System.out.println("2. Vendor"); 
+        int roleChoice = Helper.readInt("Enter your choice:"); 
+ 
+        if (roleChoice == 1) { 
+            List<Integer> childrenIds = new ArrayList<>(); 
+            List<String> allergies = new ArrayList<>(); 
+            String dietaryRestrictions = Helper.readString("Enter your dietary restrictions:"); 
+             
+            Parent parent = new Parent("", username, password, email, fullName, phoneNo, address, "Parent", childrenIds, new ArrayList<>(allergies), dietaryRestrictions);
 
-public class C206_CaseStudy {
+            users.add(parent);  // Add parent to your user database 
+            System.out.println("Parent registered successfully!"); 
+        } else if (roleChoice == 2) { 
+            Vendor vendor = new Vendor("", username, password, email, fullName, phoneNo, address, "Vendor"); 
+            users.add(vendor);  // Add vendor to your user database 
+            System.out.println("Vendor registered successfully!"); 
+        } else { 
+            System.out.println("Invalid choice. Registration canceled."); 
+        } 
+    } 
+ 
+    private static User findUserByUsername(List<User> users, String username) { 
+        for (User user : users) { 
+            if (user.getUsername().equals(username)) { 
+                return user; 
+            } 
+        } 
+        return null; 
+    } 
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        while (true) {
-            System.out.println("Welcome to the School Lunch Box Online Ordering System!");
-            System.out.println("1. Login");
-            System.out.println("2. Register");
-            System.out.println("3. Exit");
-            int choice = Helper.readInt("Please choose an option:");
-
-            switch (choice) {
-                case 1:
-                    login();
-                    break;
-                case 2:
-                    register();
-                    break;
-                case 3:
-                    System.out.println("Thank you for using our system. Goodbye!");
-                    scanner.close();
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid option. Please try again.");
-            }
-        }
-    }
-
-    private static void login() {
-        String username = Helper.readString("Enter username:");
-        String password = Helper.readString("Enter password:");
-
-        // Implement login functionality here
-        // For example, validate username and password against existing users in the system
-        // Based on the role of the user, redirect to the respective menu (Vendor/Parent)
-        
-        User user = findUserByUsername(username);
-        if (user != null && user.getPassword().equals(password)) {
-            if (user instanceof Parent) {
-                System.out.println("Welcome, Parent " + user.getFullName());
-                // Call parent menu here
-            } else if (user instanceof Vendor) {
-                System.out.println("Welcome, Vendor " + user.getFullName());
-                // Call vendor menu here
-            }
-        } else {
-            System.out.println("Invalid username or password. Please try again.");
-        }
-    }
-
-    private static void register() {
-        // Implement registration functionality here
-        // Ask the user to choose a role (Vendor/Parent) and provide necessary details
-        // Create a new Vendor or Parent object based on the user's choice
-    	String username = Helper.readString("Enter a username:");
-        String password = Helper.readString("Enter a password:");
-        String email = Helper.readString("Enter your email:");
-        String fullName = Helper.readString("Enter your full name:");
-        String phoneNo = Helper.readString("Enter your phone number:");
-        String address = Helper.readString("Enter your address:");
-        
-        System.out.println("Choose a role:");
-        System.out.println("1. Parent");
-        System.out.println("2. Vendor");
-        int roleChoice = Helper.readInt("Enter your choice:");
-        
-        if (roleChoice == 1) {
-            List<Integer> childrenIds = new ArrayList<>();
-            // Add logic to collect children IDs
-            
-            List<String> allergies = new ArrayList<>();
-            // Add logic to collect allergies
-            
-            String dietaryRestrictions = Helper.readString("Enter your dietary restrictions:");
-            
-            Parent parent = new Parent("", username, password, email, fullName, phoneNo, address, "Parent", childrenIds, allergies, dietaryRestrictions);
-            // Add parent to your user database
-            
-            System.out.println("Parent registered successfully!");
-        } else if (roleChoice == 2) {
-            Vendor vendor = new Vendor("", username, password, email, fullName, phoneNo, address, "Vendor");
-            // Add vendor to your user database
-            
-            System.out.println("Vendor registered successfully!");
-        } else {
-            System.out.println("Invalid choice. Registration canceled.");
-        }
-    }
-    private static User findUserByUsername(String username) {
-        // Iterate through your user database to find the user with the given username
-        // Return the User object if found, otherwise return null
-        return null;
-    }
 
     // Additional code for demonstrating functionalities
     private static void demonstrateFunctionalities() {
