@@ -1,27 +1,6 @@
-
-public class Admin {
-    private String username;
-    private String password;
-    
-    public Admin(String username, String password) {
-        this.username = username;
-        this.password = password;
+public class Admin extends User {
+    public Admin(String userID, String username, String password, String email, String fullName, String phoneNo, String address, String role) {
+        super(userID, username, password, email, fullName, phoneNo, address, role);
     }
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-    
 }
+
