@@ -7,11 +7,15 @@ public class C206_CaseStudy {
     public static void main(String[] args) { 
         Scanner scanner = new Scanner(System.in); 
         ArrayList<User> users = new ArrayList<>();  // Create a list to store users 
+        ArrayList<School> schools = new ArrayList<>();
  
         while (true) { 
             System.out.println("Welcome to the School Lunch Box Online Ordering System!"); 
             System.out.println("1. Login"); 
             System.out.println("2. Register"); 
+            System.out.println("3. Add School");
+            System.out.println("4. View All Schools");
+            System.out.println("5. Delete School");
             System.out.println("3. Exit"); 
             int choice = Helper.readInt("Please choose an option:"); 
  
@@ -22,7 +26,16 @@ public class C206_CaseStudy {
                 case 2: 
                     register(users); 
                     break; 
-                case 3: 
+                case 3:
+                    addSchools(schools);
+                    break;
+                case 4:
+                    viewAllSchools(schools);
+                    break;
+                case 5:
+                    deleteSchools(schools);
+                    break;
+                case 6: 
                     System.out.println("Thank you for using our system. Goodbye!"); 
                     scanner.close(); 
                     System.exit(0); 
@@ -90,7 +103,40 @@ public class C206_CaseStudy {
         } 
         return null; 
     } 
+    private static void addSchools(List<School> schools) {
+        String name = Helper.readString("Enter school name:");
+        String distributionRange = Helper.readString("Enter distribution range:");
+        School school = new School(name, distributionRange);
+        schools.add(school);
+        System.out.println("School added successfully!");
+    }
 
+    private static void viewAllSchools(List<School> schools) {
+        System.out.println("List of Schools:");
+        for (School school : schools) {
+            System.out.println("School Name: " + school.getName());
+            System.out.println("Distribution Range: " + school.getDistributionRange());
+            System.out.println();
+        }
+    }
+
+    private static void deleteSchools(List<School> schools) {
+        viewAllSchools(schools);
+        String nameToDelete = Helper.readString("Enter the name of the school to delete:");
+        School schoolToDelete = null;
+        for (School school : schools) {
+            if (school.getName().equalsIgnoreCase(nameToDelete)) {
+                schoolToDelete = school;
+                break;
+            }
+        }
+        if (schoolToDelete != null) {
+            schools.remove(schoolToDelete);
+            System.out.println("School deleted successfully!");
+        } else {
+            System.out.println("School not found.");
+        }
+    }
 
     // Additional code for demonstrating functionalities
     private static void demonstrateFunctionalities() {
