@@ -39,12 +39,63 @@ public class C206_CaseStudy {
         // Implement login functionality here
         // For example, validate username and password against existing users in the system
         // Based on the role of the user, redirect to the respective menu (Vendor/Parent)
+        
+        User user = findUserByUsername(username);
+        if (user != null && user.getPassword().equals(password)) {
+            if (user instanceof Parent) {
+                System.out.println("Welcome, Parent " + user.getFullName());
+                // Call parent menu here
+            } else if (user instanceof Vendor) {
+                System.out.println("Welcome, Vendor " + user.getFullName());
+                // Call vendor menu here
+            }
+        } else {
+            System.out.println("Invalid username or password. Please try again.");
+        }
     }
 
     private static void register() {
         // Implement registration functionality here
         // Ask the user to choose a role (Vendor/Parent) and provide necessary details
         // Create a new Vendor or Parent object based on the user's choice
+    	String username = Helper.readString("Enter a username:");
+        String password = Helper.readString("Enter a password:");
+        String email = Helper.readString("Enter your email:");
+        String fullName = Helper.readString("Enter your full name:");
+        String phoneNo = Helper.readString("Enter your phone number:");
+        String address = Helper.readString("Enter your address:");
+        
+        System.out.println("Choose a role:");
+        System.out.println("1. Parent");
+        System.out.println("2. Vendor");
+        int roleChoice = Helper.readInt("Enter your choice:");
+        
+        if (roleChoice == 1) {
+            List<Integer> childrenIds = new ArrayList<>();
+            // Add logic to collect children IDs
+            
+            List<String> allergies = new ArrayList<>();
+            // Add logic to collect allergies
+            
+            String dietaryRestrictions = Helper.readString("Enter your dietary restrictions:");
+            
+            Parent parent = new Parent("", username, password, email, fullName, phoneNo, address, "Parent", childrenIds, allergies, dietaryRestrictions);
+            // Add parent to your user database
+            
+            System.out.println("Parent registered successfully!");
+        } else if (roleChoice == 2) {
+            Vendor vendor = new Vendor("", username, password, email, fullName, phoneNo, address, "Vendor");
+            // Add vendor to your user database
+            
+            System.out.println("Vendor registered successfully!");
+        } else {
+            System.out.println("Invalid choice. Registration canceled.");
+        }
+    }
+    private static User findUserByUsername(String username) {
+        // Iterate through your user database to find the user with the given username
+        // Return the User object if found, otherwise return null
+        return null;
     }
 
     // Additional code for demonstrating functionalities
