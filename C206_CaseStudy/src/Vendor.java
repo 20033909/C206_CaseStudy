@@ -6,7 +6,7 @@ public class Vendor extends User {
     private ArrayList<Menu> dailyMenus; // List of menus offered by the vendor for each day
     private String contactInformation; // Contact information of the vendor (e.g., phone number, email)
     // You can add more attributes as needed, such as vendor ID, business address, etc.
-
+    
     // Constructor for Vendor class
     public Vendor(String userID, String username, String password, String email, String fullName, String phoneNo, String address, String role) {
         super(userID, username, password, email, fullName, phoneNo, address, role); // Set the role dynamically

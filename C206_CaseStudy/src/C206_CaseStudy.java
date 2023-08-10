@@ -131,7 +131,9 @@ public class C206_CaseStudy {
     private static void addSchools(List<School> schools) {
     	 String name = Helper.readString("Enter school name:");
          String distributionRange = Helper.readString("Enter distribution range:");
-         School school = new School(name, distributionRange);
+         String schoolContactPerson = Helper.readString("Enter contact person name (for holding delivered items till student collects item):");
+         int schoolMobile = Helper.readInt("Enter contact person mobile:");
+         School school = new School(name, distributionRange, schoolContactPerson, schoolMobile);
          schools.add(school);
          System.out.println("School added successfully!");
     }
@@ -141,6 +143,8 @@ public class C206_CaseStudy {
         for (School school : schools) {
             System.out.println("School Name: " + school.getName());
             System.out.println("Distribution Range: " + school.getDistributionRange());
+            System.out.println("Contact Person (Holds delivered food): " + school.getContactPersonName());
+            System.out.println("Contact Person Mobile: " + school.getSchoolMobile());
             System.out.println();
         }
     }
