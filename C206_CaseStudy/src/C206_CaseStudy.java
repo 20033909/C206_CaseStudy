@@ -50,6 +50,7 @@ public class C206_CaseStudy {
                 System.out.println("Welcome, Admin " + user.getFullName());
                 adminMenu(schools); // Call admin menu here
             }
+            
         } else {
             System.out.println("Invalid username or password. Please try again.");
         }
@@ -102,7 +103,7 @@ public class C206_CaseStudy {
 
     private static void adminMenu(List<School> schools) {
         while (true) {
-            System.out.println("Admin Menu:");
+            System.out.println("Vendor Menu:");
             System.out.println("1. Add School");
             System.out.println("2. View All Schools");
             System.out.println("3. Delete School");
@@ -121,6 +122,33 @@ public class C206_CaseStudy {
                     break;
                 case 4:
                     System.out.println("Logging out from admin account.");
+                    return;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        }
+    }
+    private static void vendorMenu(List<Vendor> vendors) {
+        while (true) {
+            System.out.println("Vendor Menu:");
+            System.out.println("1. Add Menu");
+            System.out.println("2. View All Menus");
+            System.out.println("3. Delete Menu");
+            System.out.println("4. Logout");
+            int choice = Helper.readInt("Please choose an option:");
+
+            switch (choice) {
+                case 1:
+                    addMenu(menu);
+                    break;
+                case 2:
+                    viewAllMenus(menu);
+                    break;
+                case 3:
+                    deleteMenu(menu);
+                    break;
+                case 4:
+                    System.out.println("Logging out from vendor account.");
                     return;
                 default:
                     System.out.println("Invalid option. Please try again.");
@@ -166,6 +194,42 @@ public class C206_CaseStudy {
             System.out.println("School not found.");
         }
     }
+   /* private static void addMenu(List<Menu> menu) {
+   	 	String name = Helper.readString("Enter menu name:");
+        String menuStarter = Helper.readString("Enter menu starter:");
+        String menuMaincourse = Helper.readString("Enter menu main course:");
+        String menuDessert = Helper.readString("Enter menu dessert:");
+        String description = Helper.readString("Enter description:");
+        String dietaryInfo = Helper.readString("Enter dietary type (Vegan/Vegetarian/Gluten-free):");
+        double price = Helper.readDouble("Enter price:");
+        menus.add(menu);
+        System.out.println("Menu added successfully!");
+   }
+
+   private static void viewAllMenus(List<Menu> menus) {
+   	System.out.println("List of Menus:");
+       for (Menu menu : menus) {
+           System.out.println("Menu Name: " + menu.getName());
+           System.out.println("Menu starter: " + menu.getMenuStarter());
+           System.out.println("Menu main: " + menu.getMenuMain());
+           System.out.println("Menu dessert: " + menu.getMenuDessert());
+           System.out.println("Menu description: " + menu.getMenuDescription());
+           System.out.println("Menu dietary info: " + menu.getMenuDietaryInfo());
+           System.out.println("Menu price: " + menu.getMenuPrice());
+           System.out.println();
+       }
+   }
+
+   private static void deleteMenu(List<Menu> menus) {
+   	viewAllMenus(menus);
+       String menuToDelete = Helper.readString("Enter the name of menu to delete:");
+       School schoolToDelete = null;
+       for (Menu menu : menus) {
+           if (menu.getName().equalsIgnoreCase(menuToDelete)) {
+               menuToDelete = menu;
+               break;
+           }
+       } */
 
 
     // Additional code for demonstrating functionalities
