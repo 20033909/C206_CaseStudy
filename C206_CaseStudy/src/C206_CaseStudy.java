@@ -8,6 +8,7 @@ public class C206_CaseStudy {
         Scanner scanner = new Scanner(System.in);
         ArrayList<User> users = new ArrayList<>();
         ArrayList<School> schools = new ArrayList<>();
+        ArrayList<Vendor> vendors = new ArrayList<>();
 
         while (true) {
             System.out.println("Welcome to the School Lunch Box Online Ordering System!");
@@ -18,7 +19,7 @@ public class C206_CaseStudy {
 
             switch (choice) {
                 case 1:
-                    login(users,schools);
+                    login(users,schools, vendors);
                     break;
                 case 2:
                     register(users);
@@ -34,7 +35,7 @@ public class C206_CaseStudy {
         }
     }
 
-    private static void login(List<User> users,List<School> schools) {
+    private static void login(List<User> users,List<School> schools, List<Vendor> vendors) {
         String username = Helper.readString("Enter username:");
         String password = Helper.readString("Enter password:");
 
@@ -48,7 +49,7 @@ public class C206_CaseStudy {
                 // Call vendor menu here
             } else if (user instanceof Admin) {
                 System.out.println("Welcome, Admin " + user.getFullName());
-                adminMenu(schools); // Call admin menu here
+                adminMenu(schools, vendors); // Call admin menu here
             }
             
         } else {
@@ -101,13 +102,16 @@ public class C206_CaseStudy {
         return null; 
     } 
 
-    private static void adminMenu(List<School> schools) {
+    private static void adminMenu(List<School> schools, List<Vendor> vendors) {
         while (true) {
-            System.out.println("Vendor Menu:");
+            System.out.println("Admin Menu:");
             System.out.println("1. Add School");
             System.out.println("2. View All Schools");
             System.out.println("3. Delete School");
-            System.out.println("4. Logout");
+            System.out.println("4. Add Vendor");
+            System.out.println("5. View All Vendor");
+            System.out.println("6. Delete Vendor");
+            System.out.println("7. Logout");
             int choice = Helper.readInt("Please choose an option:");
 
             switch (choice) {
@@ -121,6 +125,15 @@ public class C206_CaseStudy {
                     deleteSchools(schools);
                     break;
                 case 4:
+                    addVendor(vendors);
+                    break;
+                case 5: 
+                	viewAllVendors(vendors)
+                	break;
+                case 6: 
+                	deleteVendor(vendors)
+                	break;
+                case 7:
                     System.out.println("Logging out from admin account.");
                     return;
                 default:
@@ -194,8 +207,46 @@ public class C206_CaseStudy {
             System.out.println("School not found.");
         }
     }
+    private static void addVendor(List<Vendor> vendors) {
+   	 	String name = Helper.readString("Enter Vendor name:");
+        String distributionRange = Helper.readString("Enter distribution range:");
+        String schoolContactPerson = Helper.readString("Enter contact person name (for holding delivered items till student collects item):");
+        int schoolMobile = Helper.readInt("Enter contact person mobile:");
+        School school = new School(name, distributionRange, schoolContactPerson, schoolMobile);
+        schools.add(school);
+        System.out.println("School added successfully!");
+   }
+
+   private static void viewAllSchools(List<School> schools) {
+   	System.out.println("List of Schools:");
+       for (School school : schools) {
+           System.out.println("School Name: " + school.getName());
+           System.out.println("Distribution Range: " + school.getDistributionRange());
+           System.out.println("Contact Person (Holds delivered food): " + school.getContactPersonName());
+           System.out.println("Contact Person Mobile: " + school.getSchoolMobile());
+           System.out.println();
+       }
+   }
+
+   private static void deleteSchools(List<School> schools) {
+   	viewAllSchools(schools);
+       String nameToDelete = Helper.readString("Enter the name of the school to delete:");
+       School schoolToDelete = null;
+       for (School school : schools) {
+           if (school.getName().equalsIgnoreCase(nameToDelete)) {
+               schoolToDelete = school;
+               break;
+           }
+       }
+       if (schoolToDelete != null) {
+           schools.remove(schoolToDelete);
+           System.out.println("School deleted successfully!");
+       } else {
+           System.out.println("School not found.");
+       }
+   }
    /* private static void addMenu(List<Menu> menu) {
-   	 	String name = Helper.readString("Enter menu name:");
+   	 	String menuName = Helper.readString("Enter menu name:");
         String menuStarter = Helper.readString("Enter menu starter:");
         String menuMaincourse = Helper.readString("Enter menu main course:");
         String menuDessert = Helper.readString("Enter menu dessert:");
@@ -209,7 +260,7 @@ public class C206_CaseStudy {
    private static void viewAllMenus(List<Menu> menus) {
    	System.out.println("List of Menus:");
        for (Menu menu : menus) {
-           System.out.println("Menu Name: " + menu.getName());
+           System.out.println("Menu Name: " + menu.getMenuName());
            System.out.println("Menu starter: " + menu.getMenuStarter());
            System.out.println("Menu main: " + menu.getMenuMain());
            System.out.println("Menu dessert: " + menu.getMenuDessert());
