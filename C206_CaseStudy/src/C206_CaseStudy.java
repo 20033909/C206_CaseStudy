@@ -23,11 +23,16 @@ public class C206_CaseStudy {
                     break;
                 case 2:
                     register(users);
+                    // Display the table of registered parents here
+                    displayRegisteredParents(users);
                     break;
                 case 3:
                     System.out.println("Thank you for using our system. Goodbye!");
                     scanner.close();
                     System.exit(0);
+                    break;
+                case 4:
+                    adminMenu(schools, users); // Pass the users list to the adminMenu
                     break;
                 default:
                     System.out.println("Invalid option. Please try again.");
@@ -81,6 +86,13 @@ public class C206_CaseStudy {
 
               users.add(parent);  // Add parent to your user database 
               System.out.println("Parent registered successfully!"); 
+              
+            
+
+              
+              
+              
+              
           } else if (roleChoice == 2) { 
               Vendor vendor = new Vendor("", username, password, email, fullName, phoneNo, address, "Vendor"); 
               users.add(vendor);  // Add vendor to your user database 
@@ -100,18 +112,44 @@ public class C206_CaseStudy {
             } 
         } 
         return null; 
-    } 
+    }
+    
+ 
+    // Method to display the table of registered parents
+    private static void displayRegisteredParents(List<User> users) {
+        System.out.println("--------------------------------------------------------------------------------------------");
+        System.out.printf("| %-8s | %-15s | %-15s | %-15s | %-18s |\n", "User ID", "Full Name", "Username", "Phone Number", "Dietary Restr.");
+        System.out.println("--------------------------------------------------------------------------------------------");
 
+<<<<<<< HEAD
     private static void adminMenu(List<School> schools, List<Vendor> vendors) {
+=======
+        for (User user : users) {
+            if (user instanceof Parent) {
+                Parent parent = (Parent) user;
+                System.out.printf("| %-8s | %-15s | %-15s | %-15s | %-18s |\n",
+                        parent.getUserID(), parent.getFullName(), parent.getUsername(), parent.getPhoneNo(), parent.getDietaryRestrictions());
+                System.out.println("--------------------------------------------------------------------------------------------");
+            }
+        }
+    }
+
+    private static void adminMenu(List<School> schools, List<User> users) {
+>>>>>>> branch 'master' of https://github.com/20033909/C206_CaseStudy.git
         while (true) {
             System.out.println("Admin Menu:");
             System.out.println("1. Add School");
             System.out.println("2. View All Schools");
             System.out.println("3. Delete School");
+<<<<<<< HEAD
             System.out.println("4. Add Vendor");
             System.out.println("5. View All Vendor");
             System.out.println("6. Delete Vendor");
             System.out.println("7. Logout");
+=======
+            System.out.println("4. Delete Parent/Guardian");
+            System.out.println("5. Logout");
+>>>>>>> branch 'master' of https://github.com/20033909/C206_CaseStudy.git
             int choice = Helper.readInt("Please choose an option:");
 
             switch (choice) {
@@ -125,6 +163,7 @@ public class C206_CaseStudy {
                     deleteSchools(schools);
                     break;
                 case 4:
+<<<<<<< HEAD
                     addVendor(vendors);
                     break;
                 case 5: 
@@ -134,6 +173,11 @@ public class C206_CaseStudy {
                 	deleteVendor(vendors)
                 	break;
                 case 7:
+=======
+                    deleteParent(users); // Call the method to delete parent/guardian
+                    break;
+                case 5:
+>>>>>>> branch 'master' of https://github.com/20033909/C206_CaseStudy.git
                     System.out.println("Logging out from admin account.");
                     return;
                 default:
@@ -141,6 +185,7 @@ public class C206_CaseStudy {
             }
         }
     }
+
     private static void vendorMenu(List<Vendor> vendors) {
         while (true) {
             System.out.println("Vendor Menu:");
@@ -207,6 +252,7 @@ public class C206_CaseStudy {
             System.out.println("School not found.");
         }
     }
+<<<<<<< HEAD
     private static void addVendor(List<Vendor> vendors) {
    	 	String name = Helper.readString("Enter Vendor name:");
         String distributionRange = Helper.readString("Enter distribution range:");
@@ -245,6 +291,32 @@ public class C206_CaseStudy {
            System.out.println("School not found.");
        }
    }
+=======
+    
+    
+    
+    //delete parent
+    private static void deleteParent(List<User> users) {
+        String usernameToDelete = Helper.readString("Enter the username of the parent/guardian to delete:");
+        User parentToDelete = null;
+        for (User user : users) {
+            if (user instanceof Parent && user.getUsername().equalsIgnoreCase(usernameToDelete)) {
+                parentToDelete = user;
+                break;
+            }
+        }
+        if (parentToDelete != null) {
+            users.remove(parentToDelete);
+            System.out.println("Parent/guardian deleted successfully!");
+        } else {
+            System.out.println("Parent/guardian not found.");
+        }
+    }
+
+    
+    
+    
+>>>>>>> branch 'master' of https://github.com/20033909/C206_CaseStudy.git
    /* private static void addMenu(List<Menu> menu) {
    	 	String menuName = Helper.readString("Enter menu name:");
         String menuStarter = Helper.readString("Enter menu starter:");
@@ -288,7 +360,33 @@ public class C206_CaseStudy {
         // Create instances of Parent and Vendor objects
         Parent parent1 = new Parent("P001", "parent1", "password123", "parent1@example.com", "Parent One", "98765432", "123 Parent Street", "Parent",new ArrayList<>(), new ArrayList<>(), "");
         Vendor vendor1 = new Vendor("V001", "vendor1", "password456", "vendor1@example.com", "Vendor One", "87654321", "456 Vendor Road", "Vendor");
+        
+        
+        
+		// display registered parents in a table
+		// Inside your main method after adding parents to the users ArrayList
+		// Assuming 'users' is the ArrayList containing User objects
 
+		System.out.println(
+				"--------------------------------------------------------------------------------------------");
+		System.out.printf("| %-8s | %-15s | %-15s | %-15s | %-18s |\n", "User ID", "Full Name", "Username",
+				"Phone Number", "Dietary Restr.");
+		System.out.println(
+				"--------------------------------------------------------------------------------------------");
+
+		for (User user : users) {
+			if (user instanceof Parent) {
+				Parent parent = (Parent) user;
+				System.out.printf("| %-8s | %-15s | %-15s | %-15s | %-18s |\n", parent.getUserID(),
+						parent.getFullName(), parent.getUsername(), parent.getPhoneNo(),
+						parent.getDietaryRestrictions());
+				System.out.println(
+						"--------------------------------------------------------------------------------------------");
+			}
+		}
+
+        
+        
         // Set additional attributes for Parent and Vendor objects
         List<Integer> childrenIds = new ArrayList<>();
         childrenIds.add(1);
