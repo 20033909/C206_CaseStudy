@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
 
-public class userstory2Test {
+public class jerry_userstory2Test {
 
 	@Test
 	public void testDisplayRegisteredParentsAndGuardians() {

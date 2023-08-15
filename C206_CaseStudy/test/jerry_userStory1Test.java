@@ -7,7 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class C206_CaseStudyTest {
+public class jerry_userStory1Test {
 
 	private List<User> userList;
 	private List<School> schoolList;
