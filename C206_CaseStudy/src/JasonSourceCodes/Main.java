@@ -1,3 +1,4 @@
+package JasonSourceCodes;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -42,7 +43,7 @@ public class Main {
         System.out.print("Enter vendor name: ");
         String name = scanner.nextLine();
         System.out.print("Enter mobile number: ");
-        String mobileNumber = scanner.nextLine();
+        int mobileNumber = Integer.parseInt(scanner.nextLine());
         System.out.print("Enter distribution region: ");
         String distributionRegion = scanner.nextLine();
         String email;

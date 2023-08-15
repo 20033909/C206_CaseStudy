@@ -1,9 +1,12 @@
-package Test1Tests;
+package Jason_TestCases;
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import JasonSourceCodes.Vendor;
+import JasonSourceCodes.VendorManagementSystem;
 
 public class DeleteVendorTests {
 

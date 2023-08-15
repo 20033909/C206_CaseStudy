@@ -1,3 +1,4 @@
+package JasonSourceCodes;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,9 @@ public class VendorManagementSystem {
 
     // Method to delete a vendor from the system
     public void deleteVendor(Vendor vendor) {
-        vendors.remove(vendor);
+        
+    	vendors.remove(vendor);
+
     }
 
 
