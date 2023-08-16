@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class jerry_userstory3Test {//test
+public class jerry_userstory3Test {//test edit
 
 	private ArrayList<User> users;
 	List<String> childrenIds = new ArrayList<>(); 
