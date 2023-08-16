@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
 
-public class jerry_userstory2Test { //test edit
+public class jerry_userstory2Test { //test editt
 
     private static final String TABLE_HEADER =
             "--------------------------------------------------------------------------------------------\n" +
