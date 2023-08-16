@@ -15,6 +15,8 @@ public class Parent extends User {
 		this.dietaryRestrictions = dietaryRestrictions;
 	}
 
+	
+
 	// Getter methods for attributes
 	public String getDietaryRestrictions() {
 		return dietaryRestrictions;
@@ -41,8 +43,5 @@ public class Parent extends User {
 		this.dietaryRestrictions = dietaryRestrictions;
 	}
 
-	public void addOrder(Order order) {
-		// Implement the logic to add an order to the parent's orders list
-		// You may need to add more code here based on your Order class and logic
-	}
+	
 }

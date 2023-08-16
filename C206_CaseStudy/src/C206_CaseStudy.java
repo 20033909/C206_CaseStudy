@@ -106,26 +106,40 @@ public class C206_CaseStudy {
 		return null;
 	}
 
-	// Method to display the table of registered parents
 	public static void displayRegisteredParents(List<User> users) {
-		System.out.println(
-				"--------------------------------------------------------------------------------------------");
-		System.out.printf("| %-8s | %-15s | %-15s | %-15s | %-18s |\n", "User ID", "Full Name", "Username",
-				"Phone Number", "Dietary Restr.");
-		System.out.println(
-				"--------------------------------------------------------------------------------------------");
+	    System.out.println("--------------------------------------------------------------------------------------------");
+	    System.out.printf("| %-10s | %-15s | %-15s | %-15s | %-20s |\n", "User ID", "Full Name", "Username", "Phone Number", "Dietary Restr.");
+	    System.out.println("--------------------------------------------------------------------------------------------");
 
-		for (User user : users) {
-			if (user instanceof Parent) {
-				Parent parent = (Parent) user;
-				System.out.printf("| %-8s | %-15s | %-15s | %-15s | %-18s |\n", parent.getUserID(),
-						parent.getFullName(), parent.getUsername(), parent.getPhoneNo(),
-						parent.getDietaryRestrictions());
-				System.out.println(
-						"--------------------------------------------------------------------------------------------");
-			}
-		}
+	    boolean noParents = true; // Flag to indicate if there are no parents to display
+
+	    for (User user : users) {
+	        if (user instanceof Parent) {
+	            Parent parent = (Parent) user;
+	            System.out.printf("| %-10s | %-15s | %-15s | %-15s | %-20s |\n",
+	                    parent.getUserID(),
+	                    parent.getFullName(),
+	                    parent.getUsername(),
+	                    parent.getPhoneNo(),
+	                    parent.getDietaryRestrictions());
+
+	            noParents = false; // Set the flag to false since we found at least one parent
+	        }
+	    }
+
+	    if (noParents) {
+	        // Print an empty row if there are no parents to display
+	        System.out.println("|            |                 |               |                  |                        |");
+	    }
+
+	    System.out.println("--------------------------------------------------------------------------------------------");
 	}
+
+
+
+
+
+
 
 	private static void adminMenu(List<School> schools, List<User> users) {
 		while (true) {

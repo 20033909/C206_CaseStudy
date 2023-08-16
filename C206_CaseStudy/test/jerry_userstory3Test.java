@@ -5,10 +5,10 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class jerry_userstory3Test {
+public class jerry_userstory3Test {//test
 
 	private ArrayList<User> users;
-	List<String> childrenIds = new ArrayList<>(); // Make sure you use the correct type for childrenIds
+	List<String> childrenIds = new ArrayList<>(); 
 	List<String> allergies = new ArrayList<>();
 
 	@Before
